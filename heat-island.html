@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bakersfield Urban Heat Island | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload project-page">
+		<header id="header">
+			<div class="inner">
+			</div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="index.html" class="icon solid fa-arrow-left"><span class="label">Back to portfolio</span></a></li>
+				</ul>
+			</footer>
+		</header>
+
+		<div id="main">
+			<section>
+				<header class="major">
+					<h2>Bakersfield Urban Heat Island</h2>
+				</header>
+				<p>In this group project for GEOG 176C, we studied the Bakersfield Urban Heat Island (UHI): how its magnitude changed over time and which types of development contributed to the pattern.</p>
+				<ul class="actions">
+					<li><a href="index.html#two" class="button">Back to Recent Work</a></li>
+					<li><a href="https://github.com/holdenellismain/BakersfieldUHI" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Tools and Skills</h2>
+				<ul>
+					<li>ArcGIS Model Builder</li>
+					<li>Python</li>
+					<li>Linear regression</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Approach</h2>
+				<h3>Data collection and processing</h3>
+				<ol>
+					<li>Collected NLCD land cover, PRISM monthly air temperature, Census urban boundaries, a DEM, and LANDSAT imagery.</li>
+					<li>Defined rural boundaries for the 2010 and 2020 Census using a 15 km buffer, excluding areas above 305 m in elevation.</li>
+					<li>Calculated mean June through September air temperature rasters for each year in ArcGIS.</li>
+					<li>Estimated land surface temperature from LANDSAT imagery using the method of Avdan and Jovanovska (2016), then averaged the images in ArcGIS.</li>
+				</ol>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/f709bd4d-caa7-4cd7-ac62-c6c9270c4e25" alt="ArcGIS model for averaging the temperature rasters" /></span>
+					<figcaption>ArcGIS Model Builder workflow for averaging the temperature rasters.</figcaption>
+				</figure>
+
+				<h3>Measuring change</h3>
+				<p>For both air temperature and land surface temperature, the average temperature within the rural area was subtracted from the average temperature within the urban area. This produced an annual measure of the heat island magnitude.</p>
+
+				<h3>Measuring cause</h3>
+				<p>We used ordinary least squares regression with air temperature and land surface temperature as response variables. Land cover was dummy encoded with natural grassland as the reference class.</p>
+				<ul>
+					<li>The land cover raster was majority-resampled to match the air-temperature grid.</li>
+					<li>Regression samples used a 50 by 50 grid for land surface temperature and a 14 by 16 grid for air temperature.</li>
+				</ul>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/2370087c-f54e-4f9e-943c-5dcb3e6f01c3" alt="Ordinary least squares regression model" /></span>
+					<figcaption>Regression model used to estimate the relationship between temperature and land cover.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Results</h2>
+				<p>There was no clear trend in the annual change in heat island magnitude across the study period.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/128fb135-5bec-40e7-a3c4-4a04d7d35409" alt="Chart showing annual heat island magnitude" /></span>
+					<figcaption>Annual change in the measured heat island magnitude.</figcaption>
+				</figure>
+				<p>The regression results showed that natural grassland was hotter than the urban area, while agricultural land was substantially cooler. Irrigation likely explains much of this result: irrigated lawns, golf courses, and other surfaces within the city can offset the warming effect of paved surfaces.</p>
+				<div class="row">
+					<div class="col-12">
+						<figure>
+							<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/c1c41db4-63ae-445d-ae09-5d2e1d2c69f6" alt="Land surface temperature results" /></span>
+							<figcaption>Land surface temperature results.</figcaption>
+						</figure>
+					</div>
+					<div class="col-12">
+						<figure>
+							<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/1dee43bb-9390-419f-b6ba-b67d574cdcfa" alt="Regression results table" /></span>
+							<figcaption>Regression results table.</figcaption>
+						</figure>
+					</div>
+				</div>
+				<div class="box">
+					<h3>Key takeaway</h3>
+					<p>Urban land cover alone did not explain the warmest surfaces. Water availability and irrigation were important parts of the Bakersfield temperature pattern.</p>
+				</div>
+			</section>
+
+			<section>
+				<h2>Sources</h2>
+				<ul>
+					<li>Avdan, U., and G. Jovanovska. 2016. <em>Algorithm for Automated Mapping of Land Surface Temperature Using LANDSAT 8 Satellite Data.</em> <a href="https://doi.org/10.1155/2016/1480307" target="_blank" rel="noopener">Journal of Sensors</a>.</li>
+					<li>PRISM Group, Oregon State University. <a href="https://prism.oregonstate.edu/" target="_blank" rel="noopener">PRISM climate data</a>.</li>
+					<li>Ratcliffe, M. 2022. <a href="https://www.census.gov/newsroom/blogs/random-samplings/2022/12/redefining-urban-areas-following-2020-census.html" target="_blank" rel="noopener">Redefining urban areas following the 2020 Census</a>.</li>
+					<li>U.S. Geological Survey. <a href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener">EarthExplorer</a>.</li>
+					<li>Wang, Z., et al. 2020. <em>A Geographically Weighted Regression Approach to Understanding Urbanization Impacts on Urban Warming and Cooling.</em> <a href="https://doi.org/10.3390/rs12020222" target="_blank" rel="noopener">Remote Sensing</a>.</li>
+				</ul>
+			</section>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

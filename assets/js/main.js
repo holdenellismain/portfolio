@@ -73,16 +73,25 @@
 				breakpoints.on('<=medium', function() {
 
 					$window.off('scroll.strata_parallax');
-					$header.css('background-position', '');
+					if ($body.hasClass('project-page'))
+						$header.css('--header-parallax', '0px');
+					else
+						$header.css('background-position', '');
 
 				});
 
 				breakpoints.on('>medium', function() {
 
-					$header.css('background-position', 'left 0px');
+					if ($body.hasClass('project-page'))
+						$header.css('--header-parallax', '0px');
+					else
+						$header.css('background-position', 'left 0px');
 
 					$window.on('scroll.strata_parallax', function() {
-						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
+						if ($body.hasClass('project-page'))
+							$header.css('--header-parallax', (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
+						else
+							$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
 					});
 
 				});
@@ -104,7 +113,7 @@
 					overlayOpacity: 0.85,
 					popupCloserText: '',
 					popupLoaderText: '',
-					selector: '.work-item a.image',
+					selector: '.work-item a.image:not(.project-link)',
 					usePopupCaption: true,
 					usePopupDefaultStyling: false,
 					usePopupEasyClose: false,
