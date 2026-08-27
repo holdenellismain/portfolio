@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>English Premier League Match Prediction | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/project.css" />
+	</head>
+	<body class="is-preload project-page football-prediction-project">
+		<header id="header">
+			<div class="inner"></div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="index.html" class="icon solid fa-arrow-left"><span class="label">Back to portfolio</span></a></li>
+				</ul>
+			</footer>
+		</header>
+
+		<div id="main">
+			<section>
+				<header class="major">
+					<h1>ENGLISH PREMIER LEAGUE MATCH PREDICTION</h1>
+				</header>
+				<p>A machine learning project that predicts Premier League match results from public data, including pre-match betting odds as both a benchmark and a model predictor.</p>
+				<ul class="actions">
+					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
+					<li><a href="https://github.com/holdenellismain/FootballMatchPrediction" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Project Context</h2>
+				<p>This was my final project for a Fall 2024 machine learning course. It builds on my <a href="https://github.com/holdenellismain/HomeFieldAdvantage/" target="_blank" rel="noopener">home advantage project</a> and tests whether publicly available match predictors can improve on simple benchmarks.</p>
+				<h3>Skills and Tools</h3>
+				<ul>
+					<li>Machine learning in R through tidymodels</li>
+					<li>Web scraping</li>
+					<li>Object-oriented data processing in Python</li>
+					<li>Data cleaning with dplyr in R</li>
+					<li>Data visualization with ggplot in R</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Approach</h2>
+				<h3>1. Collect data</h3>
+				<p>Betting odds came from <a href="https://www.football-data.co.uk/englandm.php" target="_blank" rel="noopener">Football-Data.co.uk</a>. Match results were scraped from <a href="https://fbref.com/en/" target="_blank" rel="noopener">FBref</a>, and league tables were scraped from <a href="https://www.football365.com" target="_blank" rel="noopener">Football365</a>.</p>
+
+				<h3>2. Build match predictors</h3>
+				<p>Data was loaded into Python and processed through an object-oriented structure in <code>classes.py</code>. Each match received predictor statistics calculated from previous matches, producing a partial dataset.</p>
+
+				<h3>3. Create the final dataset</h3>
+				<p>In R, joins combined the partial match data with attendance statistics, home-advantage statistics, and the previous fixture result. The result was the final dataset documented in the project codebook.</p>
+
+				<h3>4. Prepare model inputs</h3>
+				<p>The dataset was processed to remove outliers, impute missing values, dummy encode nominal predictors, and normalize numeric predictors.</p>
+
+				<h3>5. Fit and test models</h3>
+				<p>Models were fit on training folds and evaluated on a test set. The classification models were multinomial elastic net, boosted trees, and random forest. A linear regression model instead predicted goal differential before converting that prediction into a match result.</p>
+			</section>
+
+			<section>
+				<h2>Conclusions</h2>
+				<h3>Model accuracy</h3>
+				<p>Home teams win 45% of Premier League matches, so always predicting a home win provides a simple baseline. Betting odds provided a stronger benchmark: selecting the outcome with the best odds over the last ten years produced 55.8% accuracy.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/dcbe8e7b-4674-4daf-9402-b9c245eb60a3" alt="Confusion matrix for betting odds predictions" /></span>
+					<figcaption>Confusion matrix for predictions based on betting odds.</figcaption>
+				</figure>
+				<table>
+					<thead><tr><th>Model</th><th>Training accuracy</th></tr></thead>
+					<tbody>
+						<tr><td>Elastic net multinomial</td><td>0.55</td></tr>
+						<tr><td>Boosted tree</td><td>0.55</td></tr>
+						<tr><td>Random forest</td><td>0.56</td></tr>
+					</tbody>
+				</table>
+				<p>The goal-differential approach required choosing a margin for draw predictions. I tested margins from zero to three goals using the training data.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/46c242e6-65ed-45aa-a2e4-7902d34f229a" alt="Prediction accuracy by draw margin" /></span>
+					<figcaption>Prediction accuracy across different draw margins.</figcaption>
+				</figure>
+				<p>The optimal strategy was to never predict draws, producing 55% training accuracy. On the test set, the random forest reached 56% accuracy and linear regression reached 55.6%. It remains inconclusive whether the random forest's small advantage would create a profitable long-term betting strategy because bookmaker accuracy varies by season and transaction costs require a larger edge.</p>
+
+				<h3>Model observations</h3>
+				<p>The random forest, linear regression classifier, and bookmakers used similar strategies, almost never predicting draws.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/947534db-02cd-41dc-8e2f-79d1eac96b3b" alt="Random forest confusion matrix" /></span>
+					<figcaption>Confusion matrix for the random forest model.</figcaption>
+				</figure>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/97726dd6-239b-4946-b87a-6f2231b289cd" alt="Random forest variable importance plot" /></span>
+					<figcaption>Random forest variable importance. Win and loss odds and average attendance are especially influential.</figcaption>
+				</figure>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/76740a93-59ef-4eb2-81f5-59d44bc03c74" alt="Linear regression variable importance plot" /></span>
+					<figcaption>Linear regression variable importance.</figcaption>
+				</figure>
+				<p>The linear regression model gave substantial weight to match significance, while the random forest relied on it less heavily. The importance of significance is also visible in the home team's conditional win probability.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/bb893026-411a-4e6e-91ad-ad49a20e745a" alt="Home team conditional win probability by match significance" /></span>
+					<figcaption>Home-team conditional win probability by match significance.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Future Development</h2>
+				<ul>
+					<li>Add non-Premier League matches, including Champions League, Europa League, and FA Cup fixtures, to improve form, rest, and travel predictors.</li>
+					<li>Account for injuries and the importance of absent players.</li>
+					<li>Add older data while weighting recent matches more heavily.</li>
+					<li>Improve the algorithm for determining match significance by considering other teams' results.</li>
+					<li>Use prediction confidence to explore more nuanced betting strategies instead of selecting one result for every match.</li>
+				</ul>
+			</section>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

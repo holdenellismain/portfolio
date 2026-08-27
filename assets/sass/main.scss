@@ -1095,54 +1095,6 @@ $size-header-pad: 4em;
 		top: 0;
 		width: $size-header-width;
 
-		body.project-page & {
-			&:before {
-			background-image: url('../../images/fulls/01.jpg');
-			background-repeat: repeat-y;
-			background-size: 200% auto;
-			content: '';
-			filter: blur(4px);
-			height: 105%;
-			left: 0;
-			position: absolute;
-			top: -2.5%;
-			transform: translateY(var(--header-parallax, 0px)) scale(1.03);
-			transform-origin: center center;
-			width: 100%;
-			z-index: 0;
-			}
-
-			overflow: hidden;
-
-			> * {
-				position: relative;
-				z-index: 1;
-			}
-
-			#footer {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-
-				.fa-arrow-left:before {
-					font-size: 2em;
-				}
-			}
-		}
-
-		@include breakpoint('>medium') {
-
-			body.project-page & {
-				width: 25%;
-			}
-
-			body.project-page ~ #main {
-				margin-left: 25%;
-				width: 75%;
-			}
-
-		}
-
 		> * {
 			@include vendor('flex-shrink', '0');
 			width: 100%;

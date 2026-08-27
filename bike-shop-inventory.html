@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Bike Shop Inventory Management | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/project.css" />
+	</head>
+	<body class="is-preload project-page bike-shop-project">
+		<header id="header">
+			<div class="inner"></div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="index.html" class="icon solid fa-arrow-left"><span class="label">Back to portfolio</span></a></li>
+				</ul>
+			</footer>
+		</header>
+
+		<div id="main">
+			<section>
+				<header class="major">
+					<h1>BIKE SHOP INVENTORY MANAGEMENT</h1>
+				</header>
+				<p>A Python application that automates bike-shop order entry through Clover's REST API, reducing manual work and improving inventory accuracy.</p>
+				<ul class="actions">
+					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
+					<li><a href="https://github.com/holdenellismain/BikeShopInventory" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Goals</h2>
+				<ul>
+					<li>Automate order input through Clover's REST API.</li>
+					<li>Make the code easy to debug and update for future mechanics.</li>
+					<li>Make the order-entry workflow as easy to use as possible.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Context</h2>
+				<p>The bike shop I work at uses Clover for inventory and sales management. Each year, physical inventory is compared with Clover's records, and discrepancies across more than 3,500 items can require a large amount of manual correction.</p>
+				<p>Orders previously entered by multiple employees through <a href="https://www.7-spaces.com/stock/login" target="_blank" rel="noopener">7Spaces</a> were inconsistent and time-consuming. This project improves the upstream process by standardizing order input and automating inventory updates.</p>
+			</section>
+
+			<section>
+				<h2>Approach</h2>
+				<h3>1. Parse supplier files</h3>
+				<p>Orders arrive from <a href="https://jbi.bike/site/" target="_blank" rel="noopener">JBI</a> and <a href="https://www.qbp.com/" target="_blank" rel="noopener">QBP</a> in different formats. <code>Order.py</code> handles order parsing, while <code>jbiqbp_scrape.py</code> fills in missing product information. JBI data is scraped from its website, while QBP data is matched against a catalog TSV file.</p>
+				<p>Parsed products are loaded into <code>OrderItem</code> objects for consistent handling throughout the application.</p>
+
+				<h3>2. Input items into Clover</h3>
+				<p>The application sends items to Clover one at a time through the <code>InventoryAdapter</code> class in <code>CloverAdapter.py</code>. A log file records the actions taken so orders can be reviewed and troubleshooting can be targeted.</p>
+
+				<h3>3. Support the mechanic workflow</h3>
+				<p><code>gui.py</code> is the central hub. It brings parsing, API input, logging, error handling, and user interaction together in a GUI designed for the shop's mechanics.</p>
+			</section>
+
+			<section>
+				<h2>Project Structure</h2>
+				<ul>
+					<li><code>gui.py</code> is the central application hub.</li>
+					<li><code>CloverAdapter.py</code> connects the application to Clover's Inventory API through <code>InventoryAdapter</code>.</li>
+					<li><code>OrderItem.py</code> defines the data abstraction for Clover items.</li>
+					<li><code>CloverOrderReaderAdapter.py</code> extends the inventory adapter with order-reading functionality.</li>
+					<li><code>Order.py</code> initializes and manages an order.</li>
+					<li><code>file_check.py</code> handles logging features used by order parsing.</li>
+					<li><code>jbiqbp_scrape.py</code> collects missing supplier information.</li>
+					<li><code>input_order.py</code> is a deprecated non-GUI fallback for order input.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Future Development</h2>
+				<ul>
+					<li>Improve the process for compiling <code>gui.py</code> into an executable instead of rebuilding with PyInstaller after every change.</li>
+					<li>Add unit tests to make the parser more resilient to supplier format changes and API behavior changes.</li>
+				</ul>
+			</section>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

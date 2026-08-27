@@ -1,0 +1,69 @@
+/* Shared project-page settings. Override --project-image on each page body. */
+.project-page {
+	--project-image: url("../../images/fulls/01.jpg");
+	--project-sidebar-width: 25%;
+	--project-tile-size: 100% auto;
+	--project-image-blur: 12px;
+}
+
+.bike-shop-project {
+	--project-image: url("../../images/fulls/02.jpg");
+}
+
+.santa-cruz-project {
+	--project-image: url("../../images/fulls/03.jpg");
+}
+
+.football-prediction-project {
+	--project-image: url("../../images/fulls/04.jpg");
+}
+
+.f1-advertising-project {
+	--project-image: url("../../images/fulls/05.jpg");
+}
+
+.project-page #header {
+	overflow: hidden;
+}
+
+.project-page #header:before {
+	background-image: var(--project-image);
+	background-repeat: repeat-y;
+	background-size: var(--project-tile-size);
+	content: '';
+	filter: blur(var(--project-image-blur));
+	height: 105%;
+	left: 0;
+	position: absolute;
+	top: -2.5%;
+	transform: translateY(var(--header-parallax, 0px)) scale(1.03);
+	transform-origin: center center;
+	width: 100%;
+	z-index: 0;
+}
+
+.project-page #header > * {
+	position: relative;
+	z-index: 1;
+}
+
+.project-page #header #footer {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.project-page #header #footer .fa-arrow-left:before {
+	font-size: 2em;
+}
+
+@media screen and (min-width: 981px) {
+	.project-page #header {
+		width: var(--project-sidebar-width);
+	}
+
+	.project-page #main {
+		margin-left: var(--project-sidebar-width);
+		width: calc(100% - var(--project-sidebar-width));
+	}
+}

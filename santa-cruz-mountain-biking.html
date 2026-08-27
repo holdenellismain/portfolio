@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Santa Cruz Mountain Biking | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/project.css" />
+	</head>
+	<body class="is-preload project-page santa-cruz-project">
+		<header id="header">
+			<div class="inner"></div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="index.html" class="icon solid fa-arrow-left"><span class="label">Back to portfolio</span></a></li>
+				</ul>
+			</footer>
+		</header>
+
+		<div id="main">
+			<section>
+				<header class="major">
+					<h1>SANTA CRUZ MOUNTAIN BIKING</h1>
+				</header>
+				<p>Because most mountain bike trails in Santa Cruz are private, public ridership data is limited. This project gathers and visualizes trail popularity using Strava data while building practical experience with APIs and GIS tools.</p>
+				<ul class="actions">
+					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
+                    					<li><a href="https://github.com/holdenellismain/SCMountainBiking" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Goals</h2>
+				<ul>
+					<li>Gather data on which Santa Cruz mountain bike trails are most popular.</li>
+					<li>Visualize trail ridership across the region.</li>
+					<li>Build practical knowledge of APIs, Python, and GIS tools.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Tools and Skills</h2>
+				<ul>
+					<li>Strava API through Python</li>
+					<li>ArcGIS Pro</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Approach</h2>
+				<h3>API data collection</h3>
+				<ol>
+					<li>Created a trail list manually through Strava segment search, using personal knowledge of the local trail network.</li>
+					<li>Queried the Strava API for segment statistics for every trail in the list.</li>
+					<li>Saved unique athlete counts, e-bike attempts, and pedal-bike attempts as separate datasets.</li>
+					<li>Decoded each segment polyline into X/Y coordinates so the trail could be mapped.</li>
+				</ol>
+
+				<h3>Data cleaning and mapping</h3>
+				<p>To import the results into ArcGIS, each coordinate CSV needed its first X/Y point to include the trail's attribute data. The <code>gis_preprocess.py</code> script automates this formatting and produces an ArcGIS-ready list of trail coordinates.</p>
+				<p>Some official segments covered only part of a trail, so those paths were extended manually before mapping.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/1e2b6fbc-0cbc-4bc8-8f7a-83bb9ebec8f8" alt="ArcGIS Model Builder setup for loading trail data" /></span>
+					<figcaption>ArcGIS Model Builder setup for importing the prepared trail coordinates.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Results</h2>
+				<p>The resulting maps show the distribution of mountain bike ridership across the Santa Cruz trail network, with coverage for the full study area as well as focused views of UCSC and Nisene Marks.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/42c11a6f-3dd3-4539-ae63-734b83059137" alt="Map of mountain bike ridership across the Santa Cruz study area" /></span>
+					<figcaption>Mountain bike ridership across the full study area.</figcaption>
+				</figure>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/24dab4e5-8ccd-4007-a35f-b10fd4b160f8" alt="Map of mountain bike ridership around UCSC" /></span>
+					<figcaption>Mountain bike ridership around UCSC.</figcaption>
+				</figure>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/ff97d121-46ec-46d4-9d59-5bfe0c1d0fb8" alt="Map of mountain bike ridership around Nisene Marks" /></span>
+					<figcaption>Mountain bike ridership around Nisene Marks.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Further Development</h2>
+				<ul>
+					<li>Collect data for more trails, especially the middle portion of UCSC and the climbing trails.</li>
+					<li>Visualize e-bike versus pedal-bike representation.</li>
+					<li>Analyze which days are busiest using the collected day-to-day ridership data.</li>
+				</ul>
+			</section>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
