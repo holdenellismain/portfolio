@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Survey Analysis using Item Response Theory | Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/project.css" />
+	</head>
+	<body class="is-preload project-page survey-irt-project">
+		<header id="header">
+			<div class="inner">
+			</div>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="index.html" class="icon solid fa-arrow-left"><span class="label">Back to portfolio</span></a></li>
+				</ul>
+			</footer>
+		</header>
+
+		<div id="main">
+			<section>
+				<header class="major">
+					<h1>SURVEY ANALYSIS USING ITEM RESPONSE THEORY</h1>
+				</header>
+				<p>Through a research position, I gained access to a survey of 1,114 high school freshmen that assessed college-preparedness content. I used an unsupervised machine learning approach to evaluate how well the survey measured student preparedness and how it could be improved.</p>
+				<ul class="actions">
+					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
+                    <li><a href="https://github.com/holdenellismain/SurveyAnalysis" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Skills and Tools</h2>
+				<ul>
+					<li>R</li>
+					<li>Latent variable modeling</li>
+					<li>Item response theory</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Overview / Goals</h2>
+				<p>The survey was designed to measure students' college-preparedness attitudes and knowledge. I modeled preparedness as a latent variable using a three-parameter item response model, then examined item difficulty, discrimination, and guessing behavior.</p>
+				<p>The goal was to determine which questions were informative and which questions were too easy, too hard, or too likely to be answered through guessing.</p>
+			</section>
+
+			<section>
+				<h2>Method</h2>
+				<h3>The IRT model</h3>
+				<p>Preparedness was represented by a latent variable, with binary item responses tied to a student’s underlying preparedness level. The three-parameter logistic model used for each item allowed for a guessing floor, item difficulty, and item discrimination.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/eab64a4f-6f35-4cdc-8db6-6d2a7062e910" alt="Item Characteristic Curve" /></span>
+					<figcaption>Item Characteristic Curve showing probability of a correct response across the latent preparedness scale.</figcaption>
+				</figure>
+
+				<h3>Model workflow</h3>
+				<ol>
+					<li>Check the unidimensionality assumption by fitting a two-factor IRT model and comparing it with a single-factor model.</li>
+					<li>Fit a three-parameter model with the guessing parameter constrained by the number of answer choices.</li>
+					<li>Analyze question-level coefficients, item information curves, and model fit diagnostics.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Results</h2>
+				<p>The main result was a clear view of which items were successful and which were failing to discriminate between students with different levels of preparedness. Items with very low discrimination or high levels of guessing were identified as poor measures.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://private-user-images.githubusercontent.com/175176011/529815250-a4cdbc5a-1995-448e-915e-e0e5f4ff5346.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODg4OTQxMzEsIm5iZiI6MTc4ODg5MzgzMSwicGF0aCI6Ii8xNzUxNzYwMTEvNTI5ODE1MjUwLWE0Y2RiYzVhLTE5OTUtNDQ4ZS05MTVlLWUwZTVmNGZmNTM0Ni5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwOTA4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDkwOFQxODU3MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT00ZWE4YTNjNDYwYjhmYzczNDFiMDhjMGJjNWU4ZDQ2YmU4OTU2ZDQ4ZWYxZTY1NjAwZmU2YzJkM2VhZDdlNTFmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.VnuHu00VVJbLv7rMGSq76Qh664W1tur4Dsoxj-x4NYo" alt="Survey item analysis results" /></span>
+					<figcaption>Estimated item parameter table for the survey instrument.</figcaption>
+				</figure>
+				<p>Questions that were especially difficult or easy also had poor information value around the average student ability level.</p>
+				<figure>
+					<span class="image fit project-figure"><img src="https://private-user-images.githubusercontent.com/175176011/529815340-2b1ccb5c-67f9-4641-80c0-108b28bf1f35.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODg4OTQxMzEsIm5iZiI6MTc4ODg5MzgzMSwicGF0aCI6Ii8xNzUxNzYwMTEvNTI5ODE1MzQwLTJiMWNjYjVjLTY3ZjktNDY0MS04MGMwLTEwOGIyOGJmMWYzNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwOTA4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDkwOFQxODU3MTFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jYmI2M2JhMjNiN2MwYmRlOTMxZmE2MmRiNmNmYmNiYjA2ZjIzODUyMGIzODZhN2YyODhlNzVjNGY0NTQ2M2VlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.pO5xTfuxjF2-vt_qh6T-I4SBDiU0C5OGk6W0Zzitvog" alt="Item information curves" /></span>
+					<figcaption>Information curves for several survey items, highlighting where the questions best discriminate.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Recommendations</h2>
+				<ul>
+					<li><code>qz_tf_ag</code> was far too easy, and most students answered it correctly. Removing it or changing it to a four-choice format would improve discrimination.</li>
+					<li><code>qz_coll_prep</code> was much more difficult than the rest of the survey and provided very little information for students near the mean preparedness level.</li>
+					<li><code>qz_art</code> showed about 25% correct answers with little discrimination, indicating that many students were likely guessing.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Sources</h2>
+				<ul>
+					<li>Rizopoulos, D. (2006). <em>ltm: An R package for latent variable modelling and item response theory analyses.</em> Journal of Statistical Software, 17(5), 1–25.</li>
+					<li>Chalmers, P. (2021). <em>mirt: A Multidimensional Item Response Theory Package for the R Environment.</em></li>
+					<li>Bock, R. D., &amp; Gibbons, R. D. (2021). <em>Item Response Theory.</em> Wiley.</li>
+				</ul>
+			</section>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>
