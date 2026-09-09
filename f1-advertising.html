@@ -39,21 +39,6 @@
 			</section>
 
 			<section>
-				<h2>Approach</h2>
-				<h3>Data collection</h3>
-				<ol>
-					<li>Downloaded F1 race highlights with <code>extract_frame.py</code> and yt-dlp.</li>
-					<li>Manually labeled frames with <code>label.py</code>.</li>
-					<li>Sorted and balanced the images into the structure expected by PyTorch's <a href="https://docs.pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html" target="_blank" rel="noopener">ImageFolder</a> dataset.</li>
-					<li>Augmented the training data with cropping and noise scripts.</li>
-				</ol>
-
-				<h3>Modeling</h3>
-				<p>Several architectures were tested, including a two-level classification model. Training metrics used a separate validation set to reduce the risk of overfitting. The final model used ResNet-18 initialized with pre-existing weights.</p>
-				<p>For frame-by-frame classification, mode filtering smoothed prediction noise. This made it possible to analyze camera-angle patterns across individual frames and races.</p>
-			</section>
-
-			<section>
 				<h2>Results</h2>
 				<p>The final model reached approximately 85% validation accuracy and identified the inside or cockpit camera angle correctly more than 97% of the time. Much of the remaining inaccuracy came from subjective labels, such as deciding whether a car was distant.</p>
 				<figure>
@@ -68,6 +53,21 @@
 				</figure>
 
 				<p>Camera-angle distributions varied by track, but the differences were not consistent enough to support specific recommendations.</p>
+			</section>
+
+			<section>
+				<h2>Step-by-Step</h2>
+				<h3>Data collection</h3>
+				<ol>
+					<li>Downloaded F1 race highlights with <code>extract_frame.py</code> and yt-dlp.</li>
+					<li>Manually labeled frames with <code>label.py</code>.</li>
+					<li>Sorted and balanced the images into the structure expected by PyTorch's <a href="https://docs.pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html" target="_blank" rel="noopener">ImageFolder</a> dataset.</li>
+					<li>Augmented the training data with cropping and noise scripts.</li>
+				</ol>
+
+				<h3>Modeling</h3>
+				<p>Several architectures were tested, including a two-level classification model. Training metrics used a separate validation set to reduce the risk of overfitting. The final model used ResNet-18 initialized with pre-existing weights.</p>
+				<p>For frame-by-frame classification, mode filtering smoothed prediction noise. This made it possible to analyze camera-angle patterns across individual frames and races.</p>
 			</section>
 
 			<section>

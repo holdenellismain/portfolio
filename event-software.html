@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Project Title | Portfolio</title>
+		<title>Event Software Analysis | Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -20,39 +20,115 @@
 		<div id="main">
 			<section>
 				<header class="major">
-					<h1>PROJECT TITLE</h1>
+					<h1>EVENT SOFTWARE ANALYSIS</h1>
 				</header>
-				<p>Project summary from the Markdown introduction.</p>
+				<p>Using simulated event-conference software data, this project builds a stakeholder-facing report that visualizes sign-up patterns and turns the findings into concrete recommendations for improving registration rates.</p>
 				<ul class="actions">
 					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
-					<li><a href="https://github.com/USERNAME/REPOSITORY" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+					<li><a href="https://github.com/holdenellismain/EventSoftwareAnalysis" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Goals</h2>
+				<ul>
+					<li>Visualize basic metrics relating to sign-ups.</li>
+					<li>Recommend improvements that could raise sign-up rates.</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>Tools and Skills</h2>
 				<ul>
-					<li>Tool or skill</li>
+					<li>SQL</li>
+					<li>Python</li>
+					<li>matplotlib</li>
+					<li>seaborn</li>
 				</ul>
 			</section>
 
 			<section>
-				<h2>Approach</h2>
-				<h3>Method or process</h3>
-				<p>Convert the Markdown steps into concise HTML paragraphs and lists.</p>
-				<!-- Add figures immediately after the step or subsection they describe. -->
+				<h2>Overview</h2>
+				<p>The analysis uses simulated company data for an event and conference software platform. The work investigates sign-up volume by event type, attendee category, platform, month, and year while checking for operational and data quality issues before turning the results into recommendations.</p>
 			</section>
 
 			<section>
 				<h2>Results</h2>
-				<p>Summarize the key findings from the Markdown results section.</p>
-				<!-- Use <figure>, <span class="image fit project-figure">, and <figcaption> for images. -->
+				<p>Event attendance, signed-up user attendance, and events all declined from 2023 to 2024. If that trend continues, the company will need to make major changes.</p>
+				<p>The company should collect more granular platform data for attendees and users. Current categories of mobile, web, and NA are too limited for reliable action.</p>
+				<p>Speakers had the lowest sign-up rate among attendee categories, a major missed opportunity because speakers create high-value networking connections for attendees.</p>
+				<p>In-person events had the strongest sign-up rate, while hybrid events performed slightly better than virtual events. Across event types, sign-up rates ranged from 64% to 82%, suggesting that the team should investigate high- and low-performing events for qualitative similarities.</p>
+
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/93a0f752-0d4b-4db9-ab7f-4cf25e98f9c8" alt="Signup rate by event type" /></span>
+					<figcaption>Sign-up rate by event type. In-person events had the highest median sign-up rate, while virtual events had the lowest rate and the broadest range.</figcaption>
+				</figure>
+
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/7c953c0a-6ba3-4001-b636-ea940de4ae0c" alt="Monthly signup rate overview" /></span>
+					<figcaption>Monthly sign-up rates showed a very small monthly change and no obvious seasonal pattern.</figcaption>
+				</figure>
+
+				<p>Admins were most likely to sign up, followed closely by normal attendees, with speakers far behind. This indicates a meaningful gap in networking-related engagement.</p>
+
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/5844b4c4-6a62-4a72-98d4-ed7008b6e1c4" alt="Signup rate by attendee type" /></span>
+					<figcaption>Sign-up rate by attendee type. Admins and normal attendees were much more likely to sign up than speakers.</figcaption>
+				</figure>
+
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/3885504c-9e93-4c39-b6ae-04fe5758e92e" alt="Signup rate by platform" /></span>
+					<figcaption>Sign-up rate by platform. Mobile usage was the strongest area to emphasize, while the web channel and unknown platform data needed more investigation.</figcaption>
+				</figure>
+
+				<p>Some recommendations were especially clear from the evidence. Mobile was the best-performing platform for event sign-ups, the web channel was under-used, and the unknown platform category was concerning. The report also recommends collecting more detailed device and operating system information, especially for mobile and web users.</p>
+
+				<figure>
+					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/130008ea-e068-4a8a-8563-6ae0bccfb627" alt="Year-over-year event and signup trend summary" /></span>
+					<figcaption>Year-over-year trend analysis: signup rates were stable, but event attendees, signed-up attendees, and event counts declined.</figcaption>
+				</figure>
+			</section>
+
+			<section>
+				<h2>Method</h2>
+				<h3>1. Data cleaning and table checks</h3>
+				<ol>
+					<li>Check events for duplicate records, unusual date ranges, and invalid event types.</li>
+					<li>Check reviewers and attendees for null values, double attendance of the same event, invalid deletion flags, irregular categories, and unexpected attendee counts.</li>
+					<li>Check the users table for null values, duplicate user records, and irregular email patterns.</li>
+					<li>Confirm joins between tables remain consistent and useful.</li>
+				</ol>
+
+				<h3>2. Transform the data</h3>
+				<ol>
+					<li>Remove deleted users and normalize repeated attendee records by prioritizing admin or speaker accounts where needed.</li>
+					<li>Pivot user type and platform variables for the event-level analysis.</li>
+					<li>Load the cleaned data into a pandas DataFrame and convert date variables for time-series analysis.</li>
+				</ol>
+
+				<h3>3. Visualize and summarize</h3>
+				<ol>
+					<li>Create the reporting visualizations with Python, matplotlib, and seaborn.</li>
+					<li>Summarize the results and recommend changes for stakeholders.</li>
+					<li>Export the final report as a PDF deliverable.</li>
+				</ol>
+			</section>
+
+			<section>
+				<h2>Step-by-Step</h2>
+				<ol>
+					<li>Clean the event, attendee, and user tables and check for data integrity issues.</li>
+					<li>Transform the data by adding attendance and sign-up metrics to the event table.</li>
+					<li>Visualize metrics using Python, matplotlib, and seaborn with a custom color palette.</li>
+					<li>Summarize the findings for stakeholders.</li>
+					<li>Export the final analysis report as a PDF.</li>
+				</ol>
 			</section>
 
 			<section>
 				<h2>Sources</h2>
 				<ul>
-					<li>Source citation with a link.</li>
+					<li>Simulated event software company data.</li>
 				</ul>
 			</section>
 		</div>
