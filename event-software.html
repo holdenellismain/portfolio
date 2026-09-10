@@ -91,7 +91,7 @@
 
 			<section>
 				<h2>Method</h2>
-				<h3>1. Data cleaning and table checks</h3>
+				<h3>Data cleaning and table checks</h3>
 				<ol>
 					<li>Check events for duplicate records, unusual date ranges, and invalid event types.</li>
 					<li>Check reviewers and attendees for null values, double attendance of the same event, invalid deletion flags, irregular categories, and unexpected attendee counts.</li>
@@ -99,29 +99,18 @@
 					<li>Confirm joins between tables remain consistent and useful.</li>
 				</ol>
 
-				<h3>2. Transform the data</h3>
+				<h3>Transform the data</h3>
 				<ol>
 					<li>Remove deleted users and normalize repeated attendee records by prioritizing admin or speaker accounts where needed.</li>
 					<li>Pivot user type and platform variables for the event-level analysis.</li>
 					<li>Load the cleaned data into a pandas DataFrame and convert date variables for time-series analysis.</li>
 				</ol>
 
-				<h3>3. Visualize and summarize</h3>
+				<h3>Visualize and summarize</h3>
 				<ol>
 					<li>Create the reporting visualizations with Python, matplotlib, and seaborn.</li>
 					<li>Summarize the results and recommend changes for stakeholders.</li>
 					<li>Export the final report as a PDF deliverable.</li>
-				</ol>
-			</section>
-
-			<section>
-				<h2>Step-by-Step</h2>
-				<ol>
-					<li>Clean the event, attendee, and user tables and check for data integrity issues.</li>
-					<li>Transform the data by adding attendance and sign-up metrics to the event table.</li>
-					<li>Visualize metrics using Python, matplotlib, and seaborn with a custom color palette.</li>
-					<li>Summarize the findings for stakeholders.</li>
-					<li>Export the final analysis report as a PDF.</li>
 				</ol>
 			</section>
 

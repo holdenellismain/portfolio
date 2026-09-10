@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Project Title | Portfolio</title>
+		<title>Amtrak Performance | Portfolio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/project.css" />
 	</head>
-	<body class="is-preload project-page" style="--project-image: url('images/fulls/01.jpg');">
+	<body class="is-preload project-page" style="--project-image: url('images/fulls/07.jpg');">
 		<header id="header">
 			<div class="inner"></div>
 			<footer id="footer">
@@ -20,39 +20,98 @@
 		<div id="main">
 			<section>
 				<header class="major">
-					<h1>PROJECT TITLE</h1>
+					<h1>CALIFORNIA AMTRAK PERFORMANCE</h1>
 				</header>
-				<p>Project summary from the Markdown introduction.</p>
+				<p>A dashboard using publically available data to analyze Amtrak's performance in California.</p>
 				<ul class="actions">
 					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
-					<li><a href="https://github.com/USERNAME/REPOSITORY" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
+					<li><a href="https://github.com/holdenellismain/CalAmtrak" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>Tools and Skills</h2>
 				<ul>
-					<li>Tool or skill</li>
+					<li>SQL</li>
+					<li>Python</li>
+					<li>Tableau</li>
+					<li>ArcGIS</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>Results</h2>
-				<p>Summarize the key findings from the Markdown results section.</p>
 				<div class='tableauPlaceholder' id='viz1789000367286' style='position: relative'><noscript><a href='#'><img alt='Home ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Am&#47;AmtrakDashboard_17873784958250&#47;Home&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='AmtrakDashboard_17873784958250&#47;Home' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Am&#47;AmtrakDashboard_17873784958250&#47;Home&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1789000367286');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<br>
+				<h3>Exploring the dashboard yields some actionable insights for Amtrak's leadership.</h3>
+				<ul>
+					<li>The train never reaches top speed on segments under 4 miles long, leading to poor TTR. These stops should be removed to speed up routes.</li>
+					<li>Palm Springs (PSN) has the highest stop cancellation rates due to sand blocking the tracks up until July. If this problem reemerges, either service needs to be stopped or infrastructure needs to be improved.</li>
+					<li>Santa Barbara (SBA) and Stockton (SKN) have high cancellation rates on a variety of routes. Scheduling should be more consistent to help customers plan ahead.</li>
+					<li>BNSF tracks have the worst performance in the network. This contributes to poor service in the San Joaquin Valley and on the Los Angeles-Needles routes. Right-of-way for Amtrak should be improved and new tracks should be built.</li>
+				</ul>
 			</section>
 
 			<section>
-				<h2>Step-by-Step</h2>
-				<h3>Method or process</h3>
-				<p>Convert the Markdown steps into concise HTML paragraphs and lists.</p>
-				<!-- Add figures immediately after the step or subsection they describe. -->
+				<h2>Methods</h2>
+				<h3>Create <code>train_stops.csv</code></h3>
+				<ol>
+					<li>Load and filter to California stations from GTFS data to create the <code>amtrak_stops</code> database table.</li>
+					<li>Parse daily Amtrak status text files to extract train numbers, dates, and station codes.</li>
+					<li>Calculate scheduled and actual arrival/departure times, evaluate cancellation status, and load this into the <code>train_stops</code> table, which is exported directly as a CSV.</li>
+				</ol>
+
+				<h3>Create <code>used_segments.csv</code> and <code>used_segments.json</code></h3>
+				<ol>
+					<li>Create a <code>temp_segments</code> view that links consecutive train stops to establish segment paths.</li>
+					<li>Extract distinct segments and pivot the data to list the start point and end point of each segment.</li>
+					<li>Join these points with the <code>amtrak_stops</code> table to append latitude and longitude, then export the result as <code>used_segments.csv</code>.</li>
+					<li>Load <code>used_segments.csv</code> into the ArcGIS Network Analyst (using a 500m snapping tolerance) to generate and export <code>used_segments.json</code></li>
+				</ol>
+
+				<h3>Create <code>popular_routes.geojson</code></h3>
+				<ol>
+					<li>Identify the start and end stations for every trip to define the overall route.</li>
+					<li>Filter for popular routes that occur more than 15 times within the year.</li>
+					<li>Export these route endpoints to a CSV, which is then manually processed in ArcGIS Network Analyst (using a 500m snapping tolerance) to generate and export the <code>popular_routes.geojson</code> file.</li>
+				</ol>
+
+				<h3>Create <code>popular_route_instances.csv</code></h3>
+				<ol>
+					<li>Filter the <code>train_stops</code> data to include only the trips that match the popular routes.</li>
+					<li>Remove any trips that had cancelled stops or utilized rarely used stops.</li>
+					<li>Calculate the minutes late (delay), total travel time, and a rolling sum of total miles covered for each trip.</li>
+					<li>Export the enriched view to <code>popular_route_instances.csv</code>.</li>
+				</ol>
+
+				<h3>Create <code>train_segments.csv</code></h3>
+				<ol>
+					<li>Import <code>used_segments.json</code> (generated via ArcGIS) back into the database to append the physical length of each segment.</li>
+					<li>Calculate the scheduled speed (<code>sch_mph</code>) and actual speed (<code>act_mph</code>) for each track segment.</li>
+					<li>Save this data as a <code>segments</code> view and export it as <code>train_segments.csv</code>.</li>
+				</ol>
+
+				<h3>Tableau Dashboard Visualization</h3>
+				<ol>
+					<li><strong>train_stops.csv:</strong> is used to build the Cancellations dashboard. <strong>used_segments.csv:</strong> is used to visualize the location of stops</li>
+					<li><strong>popular_route_instances.csv</strong> is used to build the routes dashboard, with <strong>popular_routes.geojson:</strong> to visualize the location of each route with <strong>used_segments.csv</strong> for stops.</li>
+					<li><strong>train_segments.csv</strong> is used to make the segment dashboard. The map is created with <strong>used_segments.json:</strong></li> and segments are grouped within Tableau by right-of-way owner. 
+				</ol>
 			</section>
+			<section>
+				<h2>Sources</h2>
+				<ul>
+					<li>Simulated event software company data.</li>
+				</ul>
+			</section>
+		</div>
 
 			<section>
 				<h2>Sources</h2>
 				<ul>
-					<li>Source citation with a link.</li>
+					<li>Amtrak GTFS - <a href="https://mobilitydatabase.org/feeds/gtfs/mdb-11" target="_blank" rel="noopener">MobilityDatabase</a>.</li>
+					<li>Amtrak GTFS (San Joaquins) - <a href="https://mobilitydatabase.org/feeds/gtfs/mdb-2295" target="_blank" rel="noopener">MobilityDatabase</a>.</li>
+					<li>2026 Amtrak Train Log - <a href="https://dixielandsoftware.net/Amtrak/status/StatusPages/index.html" target="_blank" rel="noopener">Dixieland Software</a>.</li>
 				</ul>
 			</section>
 		</div>
