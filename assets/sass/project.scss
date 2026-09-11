@@ -4,23 +4,28 @@
 	--project-sidebar-width: 25%;
 	--project-tile-size: 100% auto;
 	--project-image-blur: 12px;
+	--project-image-scale: 1;
 
 	#header {
+		background-color: transparent;
+		background-image: none;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
 		overflow: hidden;
 
-		&:before {
-			background-image: var(--project-image);
-			background-repeat: repeat-y;
-			background-size: var(--project-tile-size);
-			content: '';
-			filter: blur(var(--project-image-blur));
-			height: 105%;
-			left: 0;
+		&::before {
+			content: "";
 			position: absolute;
-			top: -2.5%;
-			transform: translateY(var(--header-parallax, 0px)) scale(1.03);
+			inset: -12px;
+			background-image: var(--project-image);
+			background-position: center var(--header-parallax, 0px);
+			background-repeat: no-repeat;
+			background-size: cover;
+			filter: blur(var(--project-image-blur));
+			-webkit-filter: blur(var(--project-image-blur));
+			transform: scale(var(--project-image-scale, 1));
 			transform-origin: center center;
-			width: 100%;
 			z-index: 0;
 		}
 
@@ -50,6 +55,14 @@
 			width: calc(100% - var(--project-sidebar-width));
 		}
 	}
+}
+
+.amtrak-project {
+	--project-image: url('../../images/fulls/07.jpg');
+}
+
+.event-software-project {
+	--project-image: url('../../images/fulls/08.jpg');
 }
 
 .bike-shop-project {

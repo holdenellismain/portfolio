@@ -61,6 +61,23 @@
 
 	// Header.
 
+		function updateProjectImageScale() {
+			if (!$body.hasClass('project-page'))
+				return;
+
+			var pageHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+			var viewportHeight = Math.max(window.innerHeight || 0, document.documentElement.clientHeight || 0);
+			var imageScale = Math.max(1, pageHeight / Math.max(viewportHeight, 1));
+			var scaleText = imageScale.toFixed(3);
+			$header.css('--project-image-scale', scaleText);
+		}
+
+		$window.on('load', function() {
+			window.setTimeout(updateProjectImageScale, 0);
+		});
+
+		$window.on('resize', updateProjectImageScale);
+
 		// Parallax background.
 
 			// Disable parallax on IE (smooth scrolling is jerky), and on mobile platforms (= better performance).
