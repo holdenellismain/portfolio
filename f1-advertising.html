@@ -22,7 +22,9 @@
 				<header class="major">
 					<h1>F1 ADVERTISING SPACE ANALYSIS</h1>
 				</header>
-				<p>Billions of dollars are spent on advertising during F1 races. This project studies which parts of the car receive the most exposure across race broadcasts and other F1 media.</p>
+				<p>Billions of dollars are spent on advertising during F1 races. This project studies which parts of the car receive the most exposure across race broadcasts and other F1 media. The image below shows 2014 estimates for the advertising price for various placements.</p>
+
+				<span class="image fit project-figure"><img src="https://raw.githubusercontent.com/holdenellismain/f1advertising/refs/heads/main/f1advertplacement.jpg" alt="F1 car with 2014 advertising placements highlighted" /></span>
 				<ul class="actions">
 					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
 					<li><a href="https://github.com/holdenellismain/f1advertising" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
@@ -32,16 +34,18 @@
 			<section>
 				<h2>Skills and Tools</h2>
 				<ul>
-					<li>PyTorch convolutional neural networks</li>
+					<li>PyTorch (convolutional neural networks)</li>
 					<li>Python and yt-dlp for YouTube frame collection</li>
-					<li>R with ggplot2 for data visualization</li>
+					<li>R (ggplot2)</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>Results</h2>
 
-				<p>Shorter content showed the inside of the car more often and the rear of the car less often. For advertisers, inside-car placements may be effective for reaching younger audiences through social media, while rear-of-car placements may better target dedicated race enthusiasts.</p>
+				<p>While the 2014 pricing estimates claim that the side and rear of the car are the most valuable by far, our data shows lots of visibility for the front and inside angles as well.</p>
+				
+				<p>Additionally, shorter content showed the inside of the car (not even considered for 2014 advert pricing) more often and the rear of the car less often. This placements can be used to target younger audiences through social media, while rear-of-car placements may better target dedicated race enthusiasts.</p>
 				<figure>
 					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/e10ad095-6b09-48e3-af3f-a66172ef3ea3" alt="Chart showing F1 camera angle proportions by content length" /></span>
 					<figcaption>Camera-angle proportions by content length.</figcaption>
@@ -59,6 +63,7 @@
 
 			<section>
 				<h2>Step-by-Step</h2>
+
 				<h3>Data collection</h3>
 				<ol>
 					<li>Downloaded F1 race highlights with <code>extract_frame.py</code> and yt-dlp.</li>
@@ -66,6 +71,9 @@
 					<li>Sorted and balanced the images into the structure expected by PyTorch's <a href="https://docs.pytorch.org/vision/main/generated/torchvision.datasets.ImageFolder.html" target="_blank" rel="noopener">ImageFolder</a> dataset.</li>
 					<li>Augmented the training data with cropping and noise scripts.</li>
 				</ol>
+
+				<span class="image fit project-figure"><img src="https://raw.githubusercontent.com/holdenellismain/f1advertising/refs/heads/main/carangles.png" alt="camera angles" /></span>
+				<figcaption>Examples of the categories used in data labelling.</figcaption>
 
 				<h3>Modeling</h3>
 				<p>Several architectures were tested, including a two-level classification model. Training metrics used a separate validation set to reduce the risk of overfitting. The final model used ResNet-18 initialized with pre-existing weights.</p>

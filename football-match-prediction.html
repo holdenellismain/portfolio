@@ -22,7 +22,7 @@
 				<header class="major">
 					<h1>ENGLISH PREMIER LEAGUE MATCH PREDICTION</h1>
 				</header>
-				<p>A machine learning project that predicts Premier League match results from public data, including pre-match betting odds as both a benchmark and a model predictor.</p>
+				<p>A machine learning project that predicts Premier League match results from public data, including pre-match betting odds as both a benchmark and a model predictor. This project builds on my <a href="https://github.com/holdenellismain/HomeFieldAdvantage/" target="_blank" rel="noopener">home advantage project</a> and tests whether publicly available match predictors can improve on simple benchmarks.</p>
 				<ul class="actions">
 					<li><a href="index.html#two" class="button">Back to Portfolio</a></li>
 					<li><a href="https://github.com/holdenellismain/FootballMatchPrediction" class="button" target="_blank" rel="noopener">View GitHub Repo</a></li>
@@ -30,34 +30,11 @@
 			</section>
 
 			<section>
-				<h2>Project Context</h2>
-				<p>This was my final project for a Fall 2024 machine learning course. It builds on my <a href="https://github.com/holdenellismain/HomeFieldAdvantage/" target="_blank" rel="noopener">home advantage project</a> and tests whether publicly available match predictors can improve on simple benchmarks.</p>
-				<h3>Skills and Tools</h3>
+				<h2>Skills and Tools</h2>
 				<ul>
-					<li>Machine learning in R through tidymodels</li>
-					<li>Web scraping</li>
-					<li>Object-oriented data processing in Python</li>
-					<li>Data cleaning with dplyr in R</li>
-					<li>Data visualization with ggplot in R</li>
+					<li>R (tidymodels, dplyr, ggplot)</li>
+					<li>Python (Web scraping and OOP)</li>
 				</ul>
-			</section>
-
-			<section>
-				<h2>Approach</h2>
-				<h3>1. Collect data</h3>
-				<p>Betting odds came from <a href="https://www.football-data.co.uk/englandm.php" target="_blank" rel="noopener">Football-Data.co.uk</a>. Match results were scraped from <a href="https://fbref.com/en/" target="_blank" rel="noopener">FBref</a>, and league tables were scraped from <a href="https://www.football365.com" target="_blank" rel="noopener">Football365</a>.</p>
-
-				<h3>2. Build match predictors</h3>
-				<p>Data was loaded into Python and processed through an object-oriented structure in <code>classes.py</code>. Each match received predictor statistics calculated from previous matches, producing a partial dataset.</p>
-
-				<h3>3. Create the final dataset</h3>
-				<p>In R, joins combined the partial match data with attendance statistics, home-advantage statistics, and the previous fixture result. The result was the final dataset documented in the project codebook.</p>
-
-				<h3>4. Prepare model inputs</h3>
-				<p>The dataset was processed to remove outliers, impute missing values, dummy encode nominal predictors, and normalize numeric predictors.</p>
-
-				<h3>5. Fit and test models</h3>
-				<p>Models were fit on training folds and evaluated on a test set. The classification models were multinomial elastic net, boosted trees, and random forest. A linear regression model instead predicted goal differential before converting that prediction into a match result.</p>
 			</section>
 
 			<section>
@@ -102,6 +79,24 @@
 					<span class="image fit project-figure"><img src="https://github.com/user-attachments/assets/bb893026-411a-4e6e-91ad-ad49a20e745a" alt="Home team conditional win probability by match significance" /></span>
 					<figcaption>Home-team conditional win probability by match significance.</figcaption>
 				</figure>
+			</section>
+
+			<section>
+				<h2>Approach</h2>
+				<h3>1. Collect data</h3>
+				<p>Betting odds came from <a href="https://www.football-data.co.uk/englandm.php" target="_blank" rel="noopener">Football-Data.co.uk</a>. Match results were scraped from <a href="https://fbref.com/en/" target="_blank" rel="noopener">FBref</a>, and league tables were scraped from <a href="https://www.football365.com" target="_blank" rel="noopener">Football365</a>.</p>
+
+				<h3>2. Build match predictors</h3>
+				<p>Data was loaded into Python and processed through an object-oriented structure in <code>classes.py</code>. Each match received predictor statistics calculated from previous matches, producing a partial dataset.</p>
+
+				<h3>3. Create the final dataset</h3>
+				<p>In R, joins combined the partial match data with attendance statistics, home-advantage statistics, and the previous fixture result. The result was the final dataset documented in the project codebook.</p>
+
+				<h3>4. Prepare model inputs</h3>
+				<p>The dataset was processed to remove outliers, impute missing values, dummy encode nominal predictors, and normalize numeric predictors.</p>
+
+				<h3>5. Fit and test models</h3>
+				<p>Models were fit on training folds and evaluated on a test set. The classification models were multinomial elastic net, boosted trees, and random forest. A linear regression model instead predicted goal differential before converting that prediction into a match result.</p>
 			</section>
 
 			<section>
